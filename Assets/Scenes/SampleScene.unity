@@ -751,12 +751,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b01428ffc263fed418e6a0decd030257, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa31512749f902b4abc84ac9d39893cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 20.48, y: 20.48}
+  m_Size: {x: 1.61, y: 3.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1528,7 +1528,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.08720958}
+  m_Offset: {x: 0, y: 0.03605485}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1539,7 +1539,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2605653, y: 1.9298117}
+  m_Size: {x: 1.2605653, y: 2.0321212}
   m_EdgeRadius: 0
 --- !u!50 &1078446734
 Rigidbody2D:
@@ -1587,7 +1587,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.52, y: 1.18}
+  m_AnchoredPosition: {x: -6.52, y: 1.42}
   m_SizeDelta: {x: 1.3767, y: 2.0893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1078446737
@@ -1741,7 +1741,7 @@ Transform:
   m_GameObject: {fileID: 1174980641}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.986, z: 0}
+  m_LocalPosition: {x: 0, y: -1.033, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2143,6 +2143,10 @@ PrefabInstance:
     - target: {fileID: 3494383300692605080, guid: b3ac73a3a20dc634aae04221904970a6, type: 3}
       propertyPath: m_Name
       value: "\u8D34\u56FE\u8272\u5757"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494383300692605080, guid: b3ac73a3a20dc634aae04221904970a6, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 3881811418846312625, guid: b3ac73a3a20dc634aae04221904970a6, type: 3}
       propertyPath: m_LocalScale.x
