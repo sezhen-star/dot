@@ -16,8 +16,8 @@ public class Obstacle : MonoBehaviour
 
         view = GetComponent<WordBlockView>();
         explodable = GetComponent<Explodable>();
-        if (view == null)
-            Debug.LogError("WordBlockView missing!");
+       // if (view == null)
+         //   Debug.LogError("WordBlockView missing!");
 
         UpdateColor();
     }

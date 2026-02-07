@@ -89,13 +89,16 @@ public class PlayerMovement : MonoBehaviour
             groundLayer
         );
 
+        // 只有从空中落地才重置跳跃次数
         if (groundedNow && !isGrounded)
         {
             jumpCount = 0;
+            secondJumpTimer = 0f; // 二段跳计时器归零
         }
 
         isGrounded = groundedNow;
     }
+
 
     // =========================
     // 移动 & 翻转
@@ -129,16 +132,18 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             Jump();
-            jumpCount = 1;
-            secondJumpTimer = secondJumpTimeLimit;
+            jumpCount = 1;               // 第一次跳
+            secondJumpTimer = secondJumpTimeLimit; // 二段跳时间窗口
         }
-        else if (jumpCount == 1 && secondJumpTimer > 0)
+        else if (jumpCount == 1 && secondJumpTimer > 0f)
         {
             Jump();
-            jumpCount = 2;
-            secondJumpTimer = 0f;
+            jumpCount = 2;               // 二段跳完成
+            secondJumpTimer = 0f;        // 禁止再次跳
         }
+        // 其他情况不能跳
     }
+
 
     void Jump()
     {

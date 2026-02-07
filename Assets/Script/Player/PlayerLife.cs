@@ -23,6 +23,6 @@ public class PlayerLife : MonoBehaviour
         rb.velocity = Vector2.zero;
         transform.position = respawnPoint.position;
 
-        cameraController.ResetCamera(respawnPoint.position.x);
+        cameraController.ResetCamera(respawnPoint.position.x,respawnPoint.position.y);
     }
 }

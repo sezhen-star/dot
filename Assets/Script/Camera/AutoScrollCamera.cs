@@ -17,6 +17,8 @@ public class AutoScrollCamera : MonoBehaviour
     private float currentY;
     private float cameraX; // 相机“世界进度”
 
+    private bool isBasement = true; // 默认在地下室
+
     void Start()
     {
         currentY = transform.position.y;
@@ -31,16 +33,23 @@ public class AutoScrollCamera : MonoBehaviour
 
     void MoveCamera()
     {
-        // 1️自动卷轴推进
-        cameraX += scrollSpeed * Time.deltaTime;
+        if (isBasement)
+        {
+            // 只跟随玩家
+            cameraX = player.position.x;
+            float targetY = player.position.y + yOffset;
+            currentY = Mathf.Lerp(currentY, targetY, ySmooth * Time.deltaTime);
+        }
+        else
+        {
+            // 自动卷轴模式
+            cameraX += scrollSpeed * Time.deltaTime;
+            float followX = player.position.x - followOffsetX;
+            cameraX = Mathf.Max(cameraX, followX);
 
-        // 2️如果玩家跑得太快，相机追上去
-        float followX = player.position.x - followOffsetX;
-        cameraX = Mathf.Max(cameraX, followX);
-
-        // 3️Y 轴平滑
-        float targetY = Mathf.Clamp(player.position.y + yOffset, 0f, 10f);
-        currentY = Mathf.Lerp(currentY, targetY, ySmooth * Time.deltaTime);
+            float targetY = player.position.y + yOffset;
+            currentY = Mathf.Lerp(currentY, targetY, ySmooth * Time.deltaTime);
+        }
 
         transform.position = new Vector3(cameraX, currentY, transform.position.z);
     }
@@ -52,14 +61,20 @@ public class AutoScrollCamera : MonoBehaviour
 
         if (player.position.x < leftBorder)
         {
-            playerLife.Die();
+            GameManager.Instance.PlayerDied();
         }
     }
 
-    // 给 PlayerLife 调用
-    public void ResetCamera(float newX)
+    public void ResetCamera(float newX, float newY)
     {
         cameraX = newX;
+        currentY = newY;
         transform.position = new Vector3(cameraX, currentY, transform.position.z);
+    }
+
+    // Trigger 调用切换地下室状态
+    public void SetBasementMode(bool value)
+    {
+        isBasement = value;
     }
 }
