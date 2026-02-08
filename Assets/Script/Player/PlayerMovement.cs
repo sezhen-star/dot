@@ -76,10 +76,8 @@ public class PlayerMovement : MonoBehaviour
         HandleMove();
         HandleJumpFeel();
     }
-
-    // =========================
-    // 地面检测（稳定核心）
-    // =========================
+    
+    // 地面检测
     void CheckGrounded()
     {
         bool groundedNow = Physics2D.OverlapBox(
@@ -100,9 +98,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    // =========================
-    // 移动 & 翻转
-    // =========================
+
+    // 移动  翻转
     void HandleMove()
     {
         float move = 0f;
@@ -124,9 +121,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // =========================
     // 跳跃逻辑（地面 + 二段）
-    // =========================
     void TryJump()
     {
         if (isGrounded)
@@ -150,9 +145,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jumpHigh);
     }
 
-    // =========================
     // 跳跃手感优化
-    // =========================
     void HandleJumpFeel()
     {
         if (rb.velocity.y < 0)
@@ -167,9 +160,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // =========================
     // 发射点翻转
-    // =========================
     void FlipFashe(bool facingRight)
     {
         if (fashe == null) return;
@@ -179,9 +170,8 @@ public class PlayerMovement : MonoBehaviour
         fashe.localPosition = pos;
     }
 
-    // =========================
+
     // 可视化地面检测
-    // =========================
     void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;
