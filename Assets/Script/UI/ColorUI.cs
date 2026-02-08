@@ -65,7 +65,7 @@ public class ColorUI : MonoBehaviour
         // 通知玩家当前颜色
         if (player != null)
         {
-            player.colorType = type;
+           // player.colorType = type;
         }
 
         // 更新高亮
