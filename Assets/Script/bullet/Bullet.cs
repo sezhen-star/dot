@@ -5,40 +5,34 @@ public class Bullet : MonoBehaviour
     public ColorType colorType;
     public float lifeTime = 2f;
 
-    [HideInInspector]
-    public Color currentColor;   // 显示用的实际颜色
+    private SpriteRenderer sr;
 
     void Start()
     {
-        // 根据 colorType 获取实际颜色
-        currentColor = GetColor(colorType);
+        sr = GetComponentInChildren<SpriteRenderer>();
+        SetColorFromType(colorType);
 
-        // 设置 SpriteRenderer 颜色
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null)
-        {
-            sr.color = currentColor;
-        }
-
-        // 子弹在 lifeTime 秒后自动消失
         Destroy(gameObject, lifeTime);
     }
 
-    // 将 ColorType 转换成 Unity Color
-    Color GetColor(ColorType type)
+    public void SetColorFromType(ColorType type)
     {
+        Color color = Color.white;
+
         switch (type)
         {
-            case ColorType.Red: return Color.red;
-            case ColorType.Green: return Color.green;
-            case ColorType.Blue: return Color.blue;
-            case ColorType.Yellow: return Color.yellow;
-            case ColorType.Purple: return new Color(0.5f, 0, 0.5f);
-            case ColorType.Cyan: return Color.cyan;
-            case ColorType.White: return Color.white;
-            case ColorType.Black: return Color.black;
-            default: return Color.white;
+            case ColorType.Red: color = Color.red; break;
+            case ColorType.Green: color = Color.green; break;
+            case ColorType.Blue: color = Color.blue; break;
+            case ColorType.Yellow: color = Color.yellow; break;
+            case ColorType.Purple: color = new Color(0.5f, 0f, 0.5f); break;
+            case ColorType.Cyan: color = Color.cyan; break;
+            case ColorType.White: color = Color.white; break;
+            case ColorType.Black: color = Color.black; break;
         }
+
+        if (sr != null)
+            sr.color = color;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -49,4 +43,5 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 }
