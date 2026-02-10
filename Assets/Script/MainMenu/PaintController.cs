@@ -29,7 +29,7 @@ public class PaintController : MonoBehaviour
     RenderTexture renderTexture;        // 用于显示的 RT
     Texture2D processedLineArtTexture;  // 线稿的可读副本（白->透明处理过）, 用作 mask
 
-    private bool eraseMode = false;
+    private bool eraseMode = false;  // 控制是否进入橡皮擦模式
 
     void Start()
     {
@@ -114,6 +114,7 @@ public class PaintController : MonoBehaviour
             }
         }
 
+        // 根据是否是橡皮模式来决定填充颜色
         Color fillColor = eraseMode ? new Color(0, 0, 0, 0) : PaintManager.Instance.CurrentColor;
         FloodFill(x, y, fillColor);
     }
@@ -188,8 +189,13 @@ public class PaintController : MonoBehaviour
         Graphics.Blit(paintTexture, renderTexture);
     }
 
-    public void EnterEraseMode() => eraseMode = true;
-    public void ExitEraseMode() => eraseMode = false;
+    // -------------------- 切换橡皮擦模式 --------------------
+
+    public void ToggleEraseMode()
+    {
+        eraseMode = !eraseMode;  // 切换橡皮擦模式
+        Debug.Log("Erase Mode: " + (eraseMode ? "ON" : "OFF"));
+    }
 
     // ---------------------- 辅助：把 RawImage 的 texture 变成可读的 Texture2D 副本 ----------------------
     // 兼容：Texture2D(可读或不可读)、RenderTexture 等
