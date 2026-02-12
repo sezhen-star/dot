@@ -1,45 +1,51 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
 public class Bullet : MonoBehaviour
 {
     public ColorType colorType;
     public float lifeTime = 2f;
 
+    private Animator animator;
     private SpriteRenderer sr;
 
     void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Start()
     {
-        ApplyColor();
+        ApplyAnimation();
         Destroy(gameObject, lifeTime);
     }
 
-    void ApplyColor()
+    void ApplyAnimation()
     {
-        if (sr == null) return;
+        if (animator == null) return;
 
-        sr.color = GetColorByType(colorType);
-    }
+        RuntimeAnimatorController controller = null;
 
-    Color GetColorByType(ColorType type)
-    {
-        switch (type)
+        // 根据颜色选择 Animator Controller
+        switch (colorType)
         {
             case ColorType.Red:
-                return Color.red;
+                controller = Resources.Load<RuntimeAnimatorController>("Animation/BulletRed");
+                break;
 
             case ColorType.Yellow:
-                return Color.yellow;
+                controller = Resources.Load<RuntimeAnimatorController>("Animation/BulletYellow");
+                break;
 
             case ColorType.Blue:
-                return Color.blue;
+                controller = Resources.Load<RuntimeAnimatorController>("Animation/BulletBlue");
+                break;
+        }
 
-            default:
-                return Color.white;
+        if (controller != null)
+        {
+            animator.runtimeAnimatorController = controller;
         }
     }
 

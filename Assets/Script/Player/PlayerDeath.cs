@@ -11,13 +11,10 @@ public class PlayerDeath : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle") ||
             collision.gameObject.CompareTag("Enemy"))
         {
-            foreach (ContactPoint2D contact in collision.contacts)
+            // 如果玩家在对方上方
+            if (transform.position.y > collision.transform.position.y + 0.3f)
             {
-                // 玩家在上方
-                if (contact.normal.y > 0.5f)
-                {
-                    return; // 从上面踩，不死
-                }
+                return;
             }
 
             Die();
