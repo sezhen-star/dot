@@ -2049,7 +2049,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u7B56\u5212:\nHikari \n\u51AC\u8363"
+  m_text: "\u7B56\u5212:\nHikari \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8e47553e84a1dd948890977d766529d9, type: 2}
   m_sharedMaterial: {fileID: -1790609550330429638, guid: 8e47553e84a1dd948890977d766529d9, type: 2}
@@ -3946,7 +3946,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u7A0B\u5E8F:\n\u5C0F\u9971\nSEZHEN"
+  m_text: "\u7A0B\u5E8F:\n\u5C0F\u9971\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8e47553e84a1dd948890977d766529d9, type: 2}
   m_sharedMaterial: {fileID: -1790609550330429638, guid: 8e47553e84a1dd948890977d766529d9, type: 2}
